@@ -1,42 +1,23 @@
-const Benchmark = require('benchmark');
-const { resize, resize10Times } = require('./resize');
-const { resizeWithWorker } = require('./resizeWithWorker');
-var suite = new Benchmark.Suite;
-
-// // add tests
-// suite.add('async resize', async function() {
-//   await resize('./inputs/example.jpg', 'example.png')
-// })
-// .add('async resize 10 times', async function() {
-//   await resize10Times('./inputs/example.jpg', 'example.png')
-// })
-// // add listeners
-// .on('cycle', function(event) {
-//   console.log(String(event.target));
-// })
-// .on('complete', function() {
-//   console.log('Fastest is ' + this.filter('fastest').map('name'));
-// })
-// // run async
-// .run({ 'async': true });
+const fs = require('fs');
+const { data } = require('./parse/test-data/large-file')
+const { stringify } = require('./parse/stringify');
+const { stringifyWithWorker } = require('./parse/stringifyWithWorker');
 
 (async () => {
-  const iterations = 100;
-  console.time('resize');
+  const iterations = 1;
+  console.time('stringify for ' + iterations + ' times');
+  let stringified;
   for(var i = 0; i < iterations; i++ ){
-    await resize('./inputs/example.jpg', 'example.png')
+    stringified = await stringify(data)
   }
-  console.timeEnd('resize')
+  // console.log('stringified', stringified)
+  console.timeEnd('stringify for ' + iterations + ' times');
 
-  console.time('resize10Times');
+  let stringifiedByWorker;
+  console.time('stringifyWithWorker for ' + iterations + ' times');
   for(var i = 0; i < iterations; i++ ){
-    await resize10Times('./inputs/example.jpg', 'example.png')
+    stringifiedByWorker = await stringifyWithWorker(data)
   }
-  console.timeEnd('resize10Times');
-
-  console.time('resizeWithWorker');
-  for(var i = 0; i < iterations; i++ ){
-    await resizeWithWorker('./inputs/example.jpg', 'example.png')
-  }
-  console.timeEnd('resizeWithWorker')
+  console.log('stringifiedByWorker', stringifiedByWorker)
+  console.timeEnd('stringifyWithWorker for ' + iterations + ' times');
 })()
