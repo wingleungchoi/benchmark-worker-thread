@@ -1,5 +1,6 @@
 const Benchmark = require('benchmark');
 const { resize, resize10Times } = require('./resize');
+const { resizeWithWorker } = require('./resizeWithWorker');
 var suite = new Benchmark.Suite;
 
 // // add tests
@@ -32,4 +33,10 @@ var suite = new Benchmark.Suite;
     await resize10Times('./inputs/example.jpg', 'example.png')
   }
   console.timeEnd('resize10Times');
+
+  console.time('resizeWithWorker');
+  for(var i = 0; i < iterations; i++ ){
+    await resizeWithWorker('./inputs/example.jpg', 'example.png')
+  }
+  console.timeEnd('resizeWithWorker')
 })()
