@@ -4,4 +4,13 @@ to start
 - `$ npm i --save benchmark`
 - `$ npm i`
 - `$ npm run benchmark`
-- 
+
+Result
+===
+```
+slowFilter: 43.918s
+
+filterWithWorker: 14.104s
+
+filterWithWorkerPool: 14.523s
+```
