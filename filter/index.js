@@ -28,17 +28,17 @@ const filterWithWorkerPool = async (data, pool) => {
     {arr: data, id: '2489666727', key: 'id'}
   ]
 
-  // console.time('slowFilter');
-  // const slowFilterWithoutWorkers = testCases.map(testCase => slowFilter(testCase))
-  // const result0 = await Promise.all(slowFilterWithoutWorkers)
-  // // console.log(JSON.stringify(result0))
-  // console.timeEnd('slowFilter');
+  console.time('slowFilter');
+  const slowFilterWithoutWorkers = testCases.map(testCase => slowFilter(testCase))
+  const result0 = await Promise.all(slowFilterWithoutWorkers)
+  // console.log(JSON.stringify(result0))
+  console.timeEnd('slowFilter');
 
-  // console.time('filterWithWorker');
-  // const filterWithWorkerPromises = testCases.map(testCase => filterWithWorker(testCase))
-  // const result1 = await Promise.all(filterWithWorkerPromises)
-  // // console.log(JSON.stringify(result1))
-  // console.timeEnd('filterWithWorker');
+  console.time('filterWithWorker');
+  const filterWithWorkerPromises = testCases.map(testCase => filterWithWorker(testCase))
+  const result1 = await Promise.all(filterWithWorkerPromises)
+  // console.log(JSON.stringify(result1))
+  console.timeEnd('filterWithWorker');
 
   console.time('filterWithWorkerPool');
   const filterWithWorkerPoolPromises = testCases.map(testCase => filterWithWorkerPool(testCase, pool))
