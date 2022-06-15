@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "crypto-js": "^4.1.1",
+    "sharp": "^0.30.6"
+  },
+  "name": "benchmark-worker-thread",
+  "description": "",
+  "version": "0.0.0",
+  "main": "basic.js",
+  "scripts": {
+    "benchmark": "node ./filter/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wingleungchoi/benchmark-worker-thread.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wingleungchoi/benchmark-worker-thread/issues"
+  },
+  "homepage": "https://github.com/wingleungchoi/benchmark-worker-thread#readme"
+}
